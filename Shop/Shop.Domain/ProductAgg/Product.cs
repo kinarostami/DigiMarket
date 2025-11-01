@@ -44,12 +44,11 @@ public class Product : AggregateRoot
         Specifications = new List<ProductSpecification>();
     }
     
-    public void Edit(string title, string imageName, string discription, long catgeoryId, long subCategoryId, 
+    public void Edit(string title, string discription, long catgeoryId, long subCategoryId, 
         long secondarySubCategoryId, string slug, SeoData seoData,IProductDomainSerivce serivce)
     {
         Title = title;
         Guard(title, slug, discription, serivce);
-        ImageName = imageName;
         Discription = discription;
         CatgeoryId = catgeoryId;
         SubCategoryId = subCategoryId;

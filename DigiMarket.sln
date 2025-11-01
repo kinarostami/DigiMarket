@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Query", "Common\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.ChckHelper", "Common\Common.ChckHelper\Common.ChckHelper.csproj", "{E8BD91E7-2722-493B-A86D-2766FEBFC42B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application", "Shop\Shop.Application\Shop.Application.csproj", "{9F24A22E-CE17-4030-86CC-F74C32131ACD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{E8BD91E7-2722-493B-A86D-2766FEBFC42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8BD91E7-2722-493B-A86D-2766FEBFC42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8BD91E7-2722-493B-A86D-2766FEBFC42B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F24A22E-CE17-4030-86CC-F74C32131ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F24A22E-CE17-4030-86CC-F74C32131ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F24A22E-CE17-4030-86CC-F74C32131ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F24A22E-CE17-4030-86CC-F74C32131ACD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{FB17ACB6-AFF3-467F-9720-9BEA1CF58529} = {46670620-26FC-4B78-82CC-B62D7DE8CC64}
 		{147A4CC1-5DFF-429A-8913-0AC2282CEB28} = {46670620-26FC-4B78-82CC-B62D7DE8CC64}
 		{E8BD91E7-2722-493B-A86D-2766FEBFC42B} = {46670620-26FC-4B78-82CC-B62D7DE8CC64}
+		{9F24A22E-CE17-4030-86CC-F74C32131ACD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02CCA5E7-0E2E-4918-8453-FD37A3B6A9F1}
