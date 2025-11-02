@@ -36,7 +36,7 @@ public class AddOrderItemCommandHandler : IBaseCommandHandler<AddOrderItemComman
 
     public async Task<OperationResult> Handle(AddOrderItemCommand request, CancellationToken cancellationToken)
     {
-        var inventory = await _sellerRepository.GetInventoryById(request.InventoryId);
+        var inventory = await _sellerRepository.GetInventoryBy(request.InventoryId);
         if (inventory == null)
             return OperationResult.NotFound();
 
