@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Comments\" />
+    <Folder Include="SiteEntites\" />
+    <Folder Include="Orders\" />
+  </ItemGroup>
+
 </Project>

@@ -33,14 +33,12 @@ public class Category : AggregateRoot
     public long? ParentId { get; set; }
     public List<Category> Child { get; set; }
 
-    public void Edit(string slug, string title, SeoData seoData, long? parentId,ICategoryDomainService service)
+    public void Edit(string slug, string title, SeoData seoData,ICategoryDomainService service)
     {
         Slug = slug?.ToSlug();
         Guard(title, slug, service);
         Title = title;
         SeoData = seoData;
-        ParentId = parentId;
-        Child = new List<Category>();
     }
 
     public void AddChild(string slug, string title, SeoData seoData, long? parentId, ICategoryDomainService service)

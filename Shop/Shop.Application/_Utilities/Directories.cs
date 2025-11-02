@@ -10,4 +10,5 @@ public class Directories
 {
     public const string ProductImages = "wwroot/images/products";
     public const string ProductGalleryImage = "wwwroot/images/products/gallery";
+    public static string UserAvatars = "wwwroot/images/user/awatars";
 }
