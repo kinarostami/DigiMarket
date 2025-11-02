@@ -1,4 +1,5 @@
 ﻿using Common.Application;
+using Common.Application.Validation;
 using Common.Domain.ValueObjects;
 using FluentValidation;
 using Shop.Domain.CategoryAgg;

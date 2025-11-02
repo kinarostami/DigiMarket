@@ -10,6 +10,12 @@ public class Order : AggregateRoot
     {
         
     }
+    public Order(long userId)
+    {
+        UserId = userId;
+        Status = OrderStatus.Pending;
+        Items = new List<OrderItem>();
+    }
     public long UserId { get; set; }
     public OrderStatus Status { get; set; }
     public OrderDiscount? Discount { get; set; }
