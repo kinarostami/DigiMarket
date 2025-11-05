@@ -13,11 +13,15 @@ using Shop.Infrastucture;
 
 namespace Shop.Config;
 
-public class ShopBootstrapper
+public static class ShopBootstrapper
 {
-    public static void RegisterShopDependency(IServiceCollection services,string connectionString)
+    public static void RegisterShopDependency(this IServiceCollection services, string connectionString)
     {
-        InfrstuctureBootstrapper.Init(services,connectionString);
+        InfrstuctureBootstrapper.Init(services, connectionString);
+
+        //services.AddMediatR(typeof(Directories).Assembly);
+
+        //services.AddMediatR(typeof(GetCategoryByIdQuery).Assembly);
 
         services.AddTransient<IProductDomainSerivce, ProductDomainService>();
         services.AddTransient<IUserDomainService, UserDomainService>();
@@ -25,5 +29,7 @@ public class ShopBootstrapper
         services.AddTransient<ISellerDomainService, SellerDomainService>();
 
         services.AddValidatorsFromAssembly(typeof(CreateCategoryCommandValidator).Assembly);
+
+        //services.InitFacadeDependensy();
     }
 }
