@@ -3,6 +3,7 @@ using MediatR;
 using Shop.Application.Users.AddToken;
 using Shop.Application.Users.ChangePassword;
 using Shop.Application.Users.ChangeWallet;
+using Shop.Application.Users.Create;
 using Shop.Application.Users.Edit;
 using Shop.Application.Users.EditAddress;
 using Shop.Application.Users.Register;
@@ -27,6 +28,7 @@ public interface IUserFacade
     Task<OperationResult> AddToken(AddUserTokenCommand command);
     Task<OperationResult> ChangePassword(ChangeUserPasswordCommand command);
     Task<OperationResult> ChangeWallet(ChangeUserWalletCommand command);
+    Task<OperationResult> Create(CreateUserCommand command);
     Task<OperationResult> Edit(EditUserCommand command);
     Task<OperationResult> Register(RegisterUserCommand command);
     Task<OperationResult> RemoveToken(RemoveUserTokenCommand command);

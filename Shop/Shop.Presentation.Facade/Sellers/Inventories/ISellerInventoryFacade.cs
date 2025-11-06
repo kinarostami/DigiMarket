@@ -2,17 +2,10 @@
 using MediatR;
 using Shop.Application.Sellers.AddInventory;
 using Shop.Application.Sellers.EditInventory;
-using Shop.Domain.ProductAgg;
 using Shop.Query.Sellers.DTOs;
 using Shop.Query.Sellers.Inventories.GetById;
 using Shop.Query.Sellers.Inventories.GetByProductId;
 using Shop.Query.Sellers.Inventories.GetList;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Shop.Presentation.Facade.Sellers.Inventories;
 
@@ -21,11 +14,12 @@ public interface ISellerInventoryFacade
     Task<OperationResult> AddInventory(AddInventoryCommand command);
     Task<OperationResult> EditInventory(EditInventoryCommand command);
 
-    Task<List<InventoryDto>> GetList(long sellerId,long productId);
-    Task<InventoryDto?> GetInventoryById(long inventoryId,long productId,long sellerId);
-    Task<List<InventoryDto>> GetInventoryByProductId(long productId,long selleId);
+    Task<InventoryDto?> GetById(long inventoryId);
+    Task<List<InventoryDto>> GetList(long sellerId);
+    Task<List<InventoryDto>> GetByProductId(long productId);
 }
-public class SellerInventoryFacade : ISellerInventoryFacade
+
+internal class SellerInventoryFacade : ISellerInventoryFacade
 {
     private readonly IMediator _mediator;
 
@@ -44,18 +38,18 @@ public class SellerInventoryFacade : ISellerInventoryFacade
         return await _mediator.Send(command);
     }
 
-    public async Task<InventoryDto?> GetInventoryById(long inventoryId, long productId, long sellerId)
+    public async Task<InventoryDto?> GetById(long inventoryId)
     {
-        return await _mediator.Send(new GetInventoryByIdQuery(inventoryId,productId,sellerId));
+        return await _mediator.Send(new GetSellerInventoryByIdQuery(inventoryId));
     }
 
-    public async Task<List<InventoryDto>> GetInventoryByProductId(long productId,long sellerId)
+    public async Task<List<InventoryDto>> GetList(long sellerId)
     {
-        return await _mediator.Send(new GetInventoryByProductIdQuery(productId,sellerId));
+        return await _mediator.Send(new GetInventoriesQuery(sellerId));
     }
 
-    public async Task<List<InventoryDto>> GetList(long sellerId,long productId)
+    public async Task<List<InventoryDto>> GetByProductId(long productId)
     {
-        return await _mediator.Send(new GetListInventoryQuery(sellerId,productId));
+        return await _mediator.Send(new GetInventoriesByProductIdQuery(productId));
     }
 }

@@ -26,8 +26,8 @@ public interface IOrderFacade
     Task<OperationResult> SendOrder(SendOrderCommand command);
 
     Task<OrderFilterResult> GetOrderByFilter(OrderFilterParam filterParam);
-    Task<OrderDto> GetOrderById(long orderId);
-    Task<OrderDto> GetCurrentUserId(long userId);
+    Task<OrderDto?> GetOrderById(long orderId);
+    Task<OrderDto?> GetCurrentUserId(long userId);
 }
 public class OrderFacade : IOrderFacade
 {
@@ -58,7 +58,7 @@ public class OrderFacade : IOrderFacade
         return await _mediator.Send(command);
     }
 
-    public async Task<OrderDto> GetCurrentUserId(long userId)
+    public async Task<OrderDto?> GetCurrentUserId(long userId)
     {
         return await _mediator.Send(new GetCurrentUserOrderQuery(userId));
     }
@@ -68,7 +68,7 @@ public class OrderFacade : IOrderFacade
         return await _mediator.Send(new GetOrderByFilterQuery(filterParam));
     }
 
-    public async Task<OrderDto> GetOrderById(long orderId)
+    public async Task<OrderDto?> GetOrderById(long orderId)
     {
         return await _mediator.Send(new GetOrderByIdQuery(orderId));
     }

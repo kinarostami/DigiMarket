@@ -5,6 +5,7 @@ using Shop.Application.Roles.Edit;
 using Shop.Query.Orders.DTOs;
 using Shop.Query.Roles.DTOs;
 using Shop.Query.Roles.GetById;
+using Shop.Query.Roles.GetList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ public interface IRoleFacade
     Task<OperationResult> Edit(EditRoleCommand command);
 
     Task<RoleDto> GetRoleById(long roleId);
+    Task<List<RoleDto>> GetRoles();
 }
 
 public class RoleFacade : IRoleFacade
@@ -44,5 +46,10 @@ public class RoleFacade : IRoleFacade
     public async Task<RoleDto> GetRoleById(long roleId)
     {
         return await _mediator.Send(new GetRoleByIdQuery(roleId));
+    }
+
+    public async Task<List<RoleDto>> GetRoles()
+    {
+        return await _mediator.Send(new GetRoleListQuery());
     }
 }
