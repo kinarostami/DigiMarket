@@ -1,4 +1,8 @@
+using Common.Application;
+using Common.Application.FileUtil.Interfaces;
+using Common.Application.FileUtil.Services;
 using Shop.Config;
+using Shop.Presentation.Facade;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.RegisterShopDependency
     ("Data Source=.;Initial Catalog=DigiMarket;Integrated Security=True;TrustServerCertificate=true");
 
+FacadeBootstrapper.InitFacadeDependency(builder.Services);
+CommonBootstrapper.Init(builder.Services);
+builder.Services.AddTransient<IFileService, FileService>();
 
 var app = builder.Build();
 

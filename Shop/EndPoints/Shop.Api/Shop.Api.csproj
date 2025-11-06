@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shop.Config\Shop.Config.csproj" />
     <ProjectReference Include="..\..\Shop.Infrastucture\Shop.Infrastucture.csproj" />
+    <ProjectReference Include="..\..\Shop.Presentation.Facade\Shop.Presentation.Facade.csproj" />
   </ItemGroup>
 
 </Project>

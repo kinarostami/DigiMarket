@@ -1,0 +1,66 @@
+﻿using Common.Application;
+using MediatR;
+using Microsoft.Extensions.Caching.Distributed;
+using Shop.Application.Categories.AddChild;
+using Shop.Application.Categories.Create;
+using Shop.Application.Categories.Edit;
+using Shop.Application.Categories.Remove;
+using Shop.Query.Categories.DTOs;
+using Shop.Query.Categories.GetById;
+using Shop.Query.Categories.GetByParentId;
+
+namespace Shop.Presentation.Facade.Categories;
+
+public class CategoryFacade : ICategoryFacade
+{
+    private readonly IMediator _mediator;
+    private IDistributedCache _cache;
+
+    public CategoryFacade(IMediator mediator, IDistributedCache cache)
+    {
+        _mediator = mediator;
+        _cache = cache;
+    }
+
+    public async Task<OperationResult<long>> AddChild(AddCategoryChildCommand command)
+    {
+        await _cache.RemoveAsync(CacheKeys.Categories);
+        return await _mediator.Send(command);
+    }
+
+    public async Task<OperationResult<long>> Create(CreateCategoryCommand command)
+    {
+        await _cache.RemoveAsync(CacheKeys.Categories);
+        return await _mediator.Send(command);
+    }
+
+    public async Task<OperationResult> Edit(EditCategoryCommand command)
+    {
+        await _cache.RemoveAsync(CacheKeys.Categories);
+        return await _mediator.Send(command);
+    }
+
+    public async Task<List<CategoryDto>> GetCategories()
+    {
+        return await _cache.GetOrSet(CacheKeys.Categories, () =>
+        {
+            return _mediator.Send(new GetCategoryListQuery());
+        });
+    }
+
+    public async Task<List<ChildCategoryDto>> GetCategoriesByParentId(long parentId)
+    {
+        return await _mediator.Send(new GetCategoryByParentIdQuery(parentId));
+    }
+
+    public async Task<CategoryDto> GetCategoryById(long id)
+    {
+        return await _mediator.Send(new GetCategoryByIdQuery(id));
+    }
+
+    public async Task<OperationResult> Remove(long categoryId)
+    {
+        await _cache.RemoveAsync(CacheKeys.Categories);
+        return await _mediator.Send(new RemoveCategoryCommand(categoryId));
+    }
+}

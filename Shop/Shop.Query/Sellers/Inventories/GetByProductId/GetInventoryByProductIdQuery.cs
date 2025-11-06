@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Shop.Query.Sellers.Inventories.GetByProductId;
 
-public record GetInventoryByProductIdQuery(long ProductId,long SellerId) : IQuery<InventoryDto>
+public record GetInventoryByProductIdQuery(long ProductId,long SellerId) : IQuery<List<InventoryDto>>
 {
 }
 
-public class GetInventoryByProductIdQueryHandler : IQueryHandler<GetInventoryByProductIdQuery, InventoryDto>
+public class GetInventoryByProductIdQueryHandler : IQueryHandler<GetInventoryByProductIdQuery, List<InventoryDto>>
 {
     private readonly ShopContext _context;
 
@@ -23,7 +23,7 @@ public class GetInventoryByProductIdQueryHandler : IQueryHandler<GetInventoryByP
         _context = context;
     }
 
-    public async Task<InventoryDto> Handle(GetInventoryByProductIdQuery request, CancellationToken cancellationToken)
+    public async Task<List<InventoryDto>> Handle(GetInventoryByProductIdQuery request, CancellationToken cancellationToken)
     {
         var seller = _context.Sellers.Where(x => x.Id == request.SellerId).First();
 
@@ -44,7 +44,7 @@ public class GetInventoryByProductIdQueryHandler : IQueryHandler<GetInventoryByP
             ProductTitle = product.Title,
             ProductImage = product.ImageName
         })
-        .FirstOrDefaultAsync();
+        .ToListAsync();
 
         return inventory;
     }
