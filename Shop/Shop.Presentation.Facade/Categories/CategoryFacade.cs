@@ -1,4 +1,5 @@
 ﻿using Common.Application;
+using Common.ChachHelper;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Shop.Application.Categories.AddChild;
@@ -8,13 +9,14 @@ using Shop.Application.Categories.Remove;
 using Shop.Query.Categories.DTOs;
 using Shop.Query.Categories.GetById;
 using Shop.Query.Categories.GetByParentId;
+using Shop.Query.Categories.GetList;
 
 namespace Shop.Presentation.Facade.Categories;
 
 public class CategoryFacade : ICategoryFacade
 {
     private readonly IMediator _mediator;
-    private IDistributedCache _cache;
+    private readonly IDistributedCache _cache;
 
     public CategoryFacade(IMediator mediator, IDistributedCache cache)
     {
@@ -44,7 +46,7 @@ public class CategoryFacade : ICategoryFacade
     {
         return await _cache.GetOrSet(CacheKeys.Categories, () =>
         {
-            return _mediator.Send(new GetCategoryListQuery());
+            return _mediator.Send(new GetListCategoryQuery());
         });
     }
 

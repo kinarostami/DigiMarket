@@ -63,6 +63,11 @@ public class UserFacade : IUserFacade
         return await _mediator.Send(command);
     }
 
+    public async Task<OperationResult> Create(CreateUserCommand command)
+    {
+        return await _mediator.Send(command);
+    }
+
     public async Task<OperationResult> Edit(EditUserCommand command)
     {
         return await _mediator.Send(command);

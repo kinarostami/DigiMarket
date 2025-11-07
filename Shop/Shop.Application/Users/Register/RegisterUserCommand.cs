@@ -1,5 +1,6 @@
 ﻿using Common.Application;
 using Common.Application.Validation;
+using Common.Domain.ValueObjects;
 using FluentValidation;
 using Shop.Domain.UserAgg;
 using Shop.Domain.UserAgg.Repsitory;
@@ -14,13 +15,13 @@ namespace Shop.Application.Users.Register;
 
 public class RegisterUserCommand : IBaseCommand
 {
-    public RegisterUserCommand(string phoneNumber, string password)
+    public RegisterUserCommand(PhoneNumber phoneNumber, string password)
     {
         PhoneNumber = phoneNumber;
         Password = password;
     }
 
-    public string PhoneNumber { get; set; }
+    public PhoneNumber PhoneNumber { get; set; }
     public string Password { get; set; }
 }
 public class RegisterUserCommandHandler : IBaseCommandHandler<RegisterUserCommand>
@@ -36,7 +37,7 @@ public class RegisterUserCommandHandler : IBaseCommandHandler<RegisterUserComman
 
     public async Task<OperationResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        var user = User.RegisterUser(request.PhoneNumber,request.Password,_userDomainService);
+        var user = User.RegisterUser(request.PhoneNumber.Value,request.Password,_userDomainService);
         
         _userRepository.Add(user);
         await _userRepository.Save();

@@ -1,6 +1,9 @@
 ﻿using Common.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+
+//using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Shop.Presentation.Facade.Users;
+using System.Threading.Tasks;
 
 namespace Shop.Api.Infrastructure.JwtUtil;
 

@@ -34,14 +34,14 @@ public class RoleController : ApiController
     [HttpPost]
     public async Task<ApiResult> CreateRole(CreateRoleCommand command)
     {
-        var result = await _roleFacade.CreateRole(command);
+        var result = await _roleFacade.Create(command);
         return CommandResult(result);
     }
 
     [HttpPut]
     public async Task<ApiResult> EditRole(EditRoleCommand command)
     {
-        var result = await _roleFacade.EditRole(command);
+        var result = await _roleFacade.Edit(command);
         return CommandResult(result);
     }
 }

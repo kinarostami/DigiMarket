@@ -1,4 +1,5 @@
 ﻿using Common.Application;
+using Common.ChachHelper;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Shop.Application.Products.AddImage;

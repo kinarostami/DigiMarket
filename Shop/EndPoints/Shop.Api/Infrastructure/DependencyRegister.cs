@@ -1,5 +1,6 @@
 ﻿using AngleSharp;
 using AspNetCoreRateLimit;
+using Microsoft.Extensions.DependencyInjection;
 using Shop.Api.Infrastructure.Gateways.Zibal;
 using Shop.Api.Infrastructure.JwtUtil;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;

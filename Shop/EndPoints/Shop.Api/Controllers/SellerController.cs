@@ -86,7 +86,7 @@ public class SellerController : ApiController
         if (seller == null)
             return QueryResult(new List<InventoryDto>());
 
-        var result = await _sellerInventoryFacade.GetList(seller.Id,);
+        var result = await _sellerInventoryFacade.GetList(seller.Id);
         return QueryResult(result);
     }
     [HttpGet("Inventory/{inventoryId}")]
